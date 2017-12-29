@@ -12,7 +12,7 @@ var getElementsByClassName = function(className) {
   	output.push(document.body);
   }
 
-  //use recursion to find childnode elements that have the givin class name 
+  //set recursion here 
   search(className, document.body.childNodes, output); 
 
   return output; 
@@ -25,7 +25,14 @@ var search = function (className, childNodes, output) {
 
 	else {
 		for (var i = 0; i < childNodes.length; i++) { 
+			var currentNode = childNodes[i]; 
 
+			if ((currentNode !== undefined && currentNode.classList !== undefined) && (currentNode.classList.contains(className))) {
+				output.push (currentNode); 
+			}  
+
+			search(className, currentNode.childNodes, output); 
 		}
+		return; 
 	}
 }
