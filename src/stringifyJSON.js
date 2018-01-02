@@ -10,9 +10,40 @@
 
 var stringifyJSON = function(obj) {
   // your code goes here
-  if (typeof obj === 'number') {
+  if (typeof obj === 'undefined' || typeof obj === 'function') {
+  	return undefined; 
+  }
+
+  else if (typeof obj === 'number') {
   	return '' + obj; 
   }
 
-  else if (typeof obj === '')
+  else if (typeof obj === 'null') {
+  	return '' + obj; 
+  }
+
+  else if (typeof obj === 'boolean') {
+  	return '' + obj; 
+  }
+
+  else if (typeof obj === 'string') {
+  	return '\"' + obj + '\"';
+  }
+
+  else if (typeof obj === 'object' && Array.isArray(obj) === true) {
+  	for (var i = 0; i < obj.length; i++) {
+  	  var arrStart = '['; 
+  	  var arrEnd = ']'; 
+  	  arrStart += stringifyJSON(obj[i]);
+      if (i !== obj.length - 1) {
+      	arrStart += ','; 
+      }
+      arrStart += arrEnd; 
+  	}
+  	return arrStart; 
+  }
+
+  
+
+
 };
