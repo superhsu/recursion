@@ -31,19 +31,20 @@ var stringifyJSON = function(obj) {
   }
 
   else if (typeof obj === 'object' && Array.isArray(obj) === true) {
-  	for (var i = 0; i < obj.length; i++) {
-  	  var arrStart = '['; 
-  	  var arrEnd = ']'; 
+    var arrStart = '['; 
+  	var arrEnd = ']';
+  	for (var i = 0; i < obj.length; i++) { 
   	  arrStart += stringifyJSON(obj[i]);
       if (i !== obj.length - 1) {
       	arrStart += ','; 
       }
-      arrStart += arrEnd; 
+      else {
+      	arrStart += arrEnd; 
+      }
   	}
   	return arrStart; 
   }
 
-  
 
 
 };
